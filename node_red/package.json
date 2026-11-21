@@ -1,0 +1,9 @@
+{
+  "name": "factory-edge-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "node-red": "^4.1.0",
+    "@flowfuse/node-red-dashboard": "^1.0.0"
+  }
+}

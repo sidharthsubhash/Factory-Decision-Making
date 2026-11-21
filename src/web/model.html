@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Factory Edge · Anomaly Model</title>
+<link rel="stylesheet" href="/demo-assets/dashboard.css">
+<script defer src="/demo-assets/model.js?v=unified-version"></script>
+</head>
+<body>
+<main>
+<header><h1>Anomaly model</h1><a href="/simulator">Sensor simulator</a></header>
+<section class="panel">
+<h2>Evaluate a sensor recording</h2>
+<p>Run a recorded SKAB sample or upload a CSV with all eight model features. The optional <code>anomaly</code> column accepts 0 or 1. Results depend on the provenance of the uploaded data.</p>
+<div class="model-controls"><button data-case="normal">Run normal sample</button><button data-case="anomaly">Run anomaly sample</button>
+<form id="upload"><label>External CSV<input name="file" type="file" accept=".csv,text/csv" required></label><button>Evaluate CSV</button></form></div>
+<p>Upload one complete recording at a time and keep its rows in chronological order.</p>
+<details><summary>Required CSV columns</summary><p>Accelerometer1RMS, Accelerometer2RMS, Current, Pressure, Temperature, Thermocouple, Voltage, Volume Flow RateRMS</p></details>
+<div id="model" role="status"></div>
+</section>
+</main>
+</body></html>

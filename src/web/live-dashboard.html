@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Factory Edge · Live Dashboard</title>
+<link rel="stylesheet" href="/demo-assets/dashboard.css?v=local-decision">
+<script defer src="/demo-assets/live-dashboard.js?v=paired-feed"></script>
+</head>
+<body>
+<main>
+<header><div><h1>Live dashboard</h1><p>Two-stage reciprocating air compressor</p></div>
+<a href="/simulator" target="_blank" rel="noopener">Open sensor simulator ↗</a></header>
+<section class="panel" aria-labelledby="decision-title">
+<h2 id="decision-title">Latest local decision</h2>
+<div class="overview decision-overview">
+  <div><p>Machine status</p><strong id="decision-status" class="status">Waiting</strong></div>
+  <div><p>API analysis time</p><strong id="decision-latency">—</strong></div>
+  <div><p>Last reading</p><strong id="decision-time">—</strong></div>
+</div>
+<div id="decision-readings" class="gauges" aria-label="Received sensor readings"></div>
+<div id="decision-alerts" aria-label="Worker alerts"></div>
+<p id="dashboard-feed" role="status">Waiting for a simulator reading.</p>
+</section>
+<p><a href="/events/export">Download event history</a> · <a href="http://127.0.0.1:1880/edge-live/compressor" target="_blank" rel="noopener">Open Node-RED dashboard ↗</a></p>
+</main>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Factory Edge · Sensor Simulator</title>
+<link rel="stylesheet" href="/demo-assets/dashboard.css?v=local-decision">
+<script defer src="/demo-assets/simulator.js?v=preset-commands"></script>
+</head>
+<body>
+<main>
+<header><div><p class="eyebrow">FACTORY EDGE · CONTROL PANEL</p><h1>Sensor simulator</h1><p>Two-stage reciprocating air compressor</p></div>
+<a id="dashboard-link" href="/live-dashboard" target="_blank" rel="noopener">Open live dashboard ↗</a></header>
+<section class="panel controls"><button id="run">Pause streaming</button><span id="connection" role="status">Connecting to the local API…</span></section>
+
+<div class="columns">
+<section class="panel"><h2>Sensor controls</h2><p>Type a reading into each box. Values stream automatically while running.</p><div id="controls"></div><label class="noise"><input id="noise" type="checkbox"> Add sensor drift</label>
+</section>
+<section class="panel"><h2>Fault scenarios</h2><div id="presets" class="presets"></div></section>
+</div>
+<p><a href="/cloud-setup">ThingsBoard Cloud setup</a> · <a href="/model-demo">Anomaly model and CSV evaluation</a></p>
+</main>
+</body>
+</html>

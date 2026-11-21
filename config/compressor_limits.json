@@ -1,0 +1,74 @@
+{
+  "system": "Two-Stage Industrial Reciprocating Air Compressor",
+  "asset_id": "COMPRESSOR_01",
+  "limits_type": "DEMONSTRATION_PLACEHOLDER_CALIBRATE_BEFORE_PRODUCTION",
+  "version": "1.0.0",
+  "sensors": {
+    "temperature": {
+      "name": "Intercooler / Process Air Temperature",
+      "unit": "°C",
+      "enabled": true,
+      "normal_min": 60.0,
+      "normal_max": 95.0,
+      "warning_min": 50.0,
+      "warning_max": 105.0,
+      "critical_min": 40.0,
+      "critical_max": 120.0,
+      "max_rate_of_change": 5.0,
+      "persistence_samples": 3
+    },
+    "vibration": {
+      "name": "Crankcase / Motor Bearing Vibration",
+      "unit": "g RMS",
+      "enabled": true,
+      "normal_min": 0.05,
+      "normal_max": 0.30,
+      "warning_min": 0.0,
+      "warning_max": 0.45,
+      "critical_min": 0.0,
+      "critical_max": 0.75,
+      "max_rate_of_change": 0.15,
+      "persistence_samples": 3
+    },
+    "pressure": {
+      "name": "Stage 2 Discharge / Receiver Pressure",
+      "unit": "bar",
+      "enabled": true,
+      "normal_min": 6.5,
+      "normal_max": 9.5,
+      "warning_min": 5.5,
+      "warning_max": 10.5,
+      "critical_min": 4.0,
+      "critical_max": 12.0,
+      "max_rate_of_change": 1.5,
+      "persistence_samples": 3
+    },
+    "current": {
+      "name": "Motor Drive Current",
+      "unit": "A",
+      "enabled": true,
+      "normal_min": 14.0,
+      "normal_max": 22.0,
+      "warning_min": 10.0,
+      "warning_max": 26.0,
+      "critical_min": 6.0,
+      "critical_max": 32.0,
+      "max_rate_of_change": 4.0,
+      "persistence_samples": 3
+    },
+    "speed": {
+      "name": "Compressor Shaft Rotational Speed",
+      "unit": "RPM",
+      "enabled": true,
+      "normal_min": 1420.0,
+      "normal_max": 1480.0,
+      "warning_min": 1350.0,
+      "warning_max": 1520.0,
+      "critical_min": 1200.0,
+      "critical_max": 1600.0,
+      "max_rate_of_change": 60.0,
+      "persistence_samples": 3
+    }
+  }
+}
+

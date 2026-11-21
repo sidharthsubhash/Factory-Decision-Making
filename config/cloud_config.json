@@ -1,0 +1,4 @@
+{
+  "periodic_interval_seconds": 30,
+  "timeout_seconds": 5
+}

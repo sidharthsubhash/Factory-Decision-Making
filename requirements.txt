@@ -1,0 +1,39 @@
+# ============================================================================
+# Factory Edge Monitoring System — Python Dependencies
+# Problem Statement 5: Edge Computing for Real-Time Factory Decision-Making
+# Two-Stage Industrial Reciprocating Air Compressor (15 kW / 10 Bar)
+# ============================================================================
+# Install with: .venv\Scripts\pip install -r requirements.txt
+# Demo runtime: Python 3.12
+
+# --- Core API & Server ---
+fastapi==0.162.0
+uvicorn==0.54.0
+pydantic==2.14.2
+python-multipart==0.0.32
+starlette==1.10.0
+
+# --- Machine Learning & Data ---
+scikit-learn==1.9.1
+numpy==2.5.4
+pandas==3.1.0
+joblib==1.6.0
+scipy==1.18.1
+
+# --- IoT / MQTT ---
+paho-mqtt==2.2.0
+
+# --- Cloud Sync (ThingsBoard) ---
+requests==2.34.2
+urllib3==2.8.0
+certifi==2026.10.23
+
+# --- Dashboard Replay (SKAB) ---
+streamlit==1.66.1
+
+# --- Testing ---
+pytest==9.2.0
+anyio==4.15.1
+
+# --- HTTP integration tests ---
+httpx==0.28.1

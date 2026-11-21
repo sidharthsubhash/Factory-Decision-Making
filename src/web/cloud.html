@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ThingsBoard Cloud setup</title>
+<link rel="stylesheet" href="/demo-assets/dashboard.css">
+<script defer src="/demo-assets/cloud.js"></script></head>
+<body><main>
+<header><h1>ThingsBoard Cloud setup</h1><a href="/simulator">Sensor simulator</a></header>
+<section class="panel"><p>Send simulated sensor and decision summaries to your ThingsBoard device. The token stays in the local API session until you disable sync or restart the API.</p></section>
+<form id="settings" class="panel controls">
+<label>ThingsBoard region<select id="region"><option value="eu">EU · eu.thingsboard.cloud</option><option value="us">US · thingsboard.cloud</option></select></label>
+<label>Device access token<input id="token" type="password" autocomplete="off" required maxlength="512"></label>
+<button>Enable sync</button>
+</form>
+<section class="panel"><h2>Sync status</h2><p id="status" role="status">Loading…</p><p id="result" role="status"></p>
+<div class="controls"><button id="send">Send latest reading now</button><button id="disable">Disable sync</button></div></section>
+</main></body></html>

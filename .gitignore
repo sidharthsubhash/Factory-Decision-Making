@@ -1,0 +1,21 @@
+# Local environments and installed dependencies
+.venv*/
+node_modules/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+
+# Local events, logs, and Node-RED runtime state
+*.db
+*.db-*
+*.sqlite*
+*.log
+node_red/.config.*
+node_red/*_cred.json
+node_red/.sessions.json
+
+# Local credentials and candidate training outputs
+.env
+.env.*
+models/*_candidate.joblib
+reports/*_candidate_validation.json

@@ -1,0 +1,2109 @@
+[
+  {
+    "id": "cb15302cb8a72433",
+    "type": "tab",
+    "label": "Flow 1",
+    "disabled": true,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "tab_compressor",
+    "type": "tab",
+    "label": "Two-Stage Compressor Monitor",
+    "disabled": true,
+    "info": "Edge Condition Monitoring & Worker Recommendations for Two-Stage Industrial Reciprocating Air Compressor",
+    "env": []
+  },
+  {
+    "id": "eec8baf24085af31",
+    "type": "tab",
+    "label": "Two-Stage Compressor Monitor",
+    "disabled": true,
+    "info": "Edge Condition Monitoring & Worker Recommendations for Two-Stage Industrial Reciprocating Air Compressor",
+    "env": []
+  },
+  {
+    "id": "50d411bc49d22a09",
+    "type": "tab",
+    "label": "Two-Stage Compressor Monitor",
+    "disabled": false,
+    "info": "Edge Condition Monitoring & Worker Recommendations for Two-Stage Industrial Reciprocating Air Compressor",
+    "env": []
+  },
+  {
+    "id": "8ee9900e86111602",
+    "type": "mqtt-broker",
+    "name": "Wokwi MQTT",
+    "broker": "127.0.0.1",
+    "port": 1883,
+    "clientid": "",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": 4,
+    "keepalive": 60,
+    "cleansession": true,
+    "autoUnsubscribe": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthRetain": "false",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closeRetain": "false",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willRetain": "false",
+    "willPayload": "",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  },
+  {
+    "id": "e320894f69de55bb",
+    "type": "ui-base",
+    "name": "My Dashboard",
+    "path": "/dashboard",
+    "appIcon": "",
+    "includeClientData": true,
+    "acceptsClientConfig": [
+      "ui-notification",
+      "ui-control"
+    ],
+    "showPathInSidebar": false,
+    "headerContent": "page",
+    "navigationStyle": "default",
+    "titleBarStyle": "default",
+    "showReconnectNotification": true,
+    "notificationDisplayTime": 1,
+    "showDisconnectNotification": true,
+    "allowInstall": false
+  },
+  {
+    "id": "47d50985659cb599",
+    "type": "ui-theme",
+    "name": "Default Theme",
+    "colors": {
+      "surface": "#fcfcfd",
+      "primary": "#0d74ce",
+      "bgPage": "#f9f9fb",
+      "groupBg": "#ffffff",
+      "groupOutline": "#d9d9e0"
+    },
+    "sizes": {
+      "density": "default",
+      "pagePadding": "12px",
+      "groupGap": "12px",
+      "groupBorderRadius": "4px",
+      "widgetGap": "12px"
+    }
+  },
+  {
+    "id": "56c79222ca3187f3",
+    "type": "ui-page",
+    "name": "Live Factory",
+    "ui": "e320894f69de55bb",
+    "path": "\tfactory",
+    "icon": "home",
+    "layout": "grid",
+    "theme": "47d50985659cb599",
+    "breakpoints": [
+      {
+        "name": "Default",
+        "px": "0",
+        "cols": "3"
+      },
+      {
+        "name": "Tablet",
+        "px": "576",
+        "cols": "6"
+      },
+      {
+        "name": "Small Desktop",
+        "px": "768",
+        "cols": "9"
+      },
+      {
+        "name": "Desktop",
+        "px": "1024",
+        "cols": "12"
+      }
+    ],
+    "tabs": [],
+    "order": 1,
+    "className": "",
+    "visible": "true",
+    "disabled": "false"
+  },
+  {
+    "id": "2c74292f2561ca4f",
+    "type": "ui-group",
+    "name": "Machine Parameters",
+    "page": "56c79222ca3187f3",
+    "width": 6,
+    "height": 1,
+    "order": 1,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default",
+    "tab": ""
+  },
+  {
+    "id": "broker_local",
+    "type": "mqtt-broker",
+    "name": "Local Mosquitto / Edge Broker",
+    "broker": "127.0.0.1",
+    "port": 1883,
+    "clientid": "NodeRED_FactoryEdge_01",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": 4,
+    "keepalive": 60,
+    "cleansession": true,
+    "autoUnsubscribe": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": "",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  },
+  {
+    "id": "ui_theme_compressor",
+    "type": "ui-theme",
+    "name": "Industrial Dark Theme",
+    "colors": {
+      "surface": "#1e293b",
+      "primary": "#38bdf8",
+      "bgPage": "#0f172a",
+      "groupBg": "#1e293b",
+      "groupOutline": "#334155"
+    }
+  },
+  {
+    "id": "page_dashboard",
+    "type": "ui-page",
+    "name": "Two-Stage Compressor Dashboard",
+    "ui": "e320894f69de55bb",
+    "path": "/compressor",
+    "icon": "dashboard",
+    "layout": "grid",
+    "theme": "ui_theme_compressor",
+    "order": 2,
+    "className": ""
+  },
+  {
+    "id": "group_overview",
+    "type": "ui-group",
+    "name": "Machine Overview & Health Status",
+    "page": "page_dashboard",
+    "width": "12",
+    "height": "3",
+    "order": 1,
+    "showTitle": true,
+    "className": ""
+  },
+  {
+    "id": "group_sensors",
+    "type": "ui-group",
+    "name": "Five Sensor Real-Time Telemetry",
+    "page": "page_dashboard",
+    "width": "12",
+    "height": "6",
+    "order": 2,
+    "showTitle": true,
+    "className": ""
+  },
+  {
+    "id": "group_alerts",
+    "type": "ui-group",
+    "name": "Actionable Worker Corrective Recommendations",
+    "page": "page_dashboard",
+    "width": "12",
+    "height": "7",
+    "order": 3,
+    "showTitle": true,
+    "className": ""
+  },
+  {
+    "id": "group_ml",
+    "type": "ui-group",
+    "name": "Machine Learning Diagnostic Engine",
+    "page": "page_dashboard",
+    "width": "6",
+    "height": "4",
+    "order": 4,
+    "showTitle": true,
+    "className": ""
+  },
+  {
+    "id": "group_performance",
+    "type": "ui-group",
+    "name": "Edge Latency & Execution Performance",
+    "page": "page_dashboard",
+    "width": "6",
+    "height": "4",
+    "order": 5,
+    "showTitle": true,
+    "className": ""
+  },
+  {
+    "id": "d3376caee039b5d1",
+    "type": "mqtt in",
+    "z": "cb15302cb8a72433",
+    "name": "",
+    "topic": "factory/demo-7f3a/sensors",
+    "qos": "0",
+    "datatype": "auto-detect",
+    "broker": "8ee9900e86111602",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 290,
+    "y": 140,
+    "wires": [
+      [
+        "354defe8603b317d",
+        "b104c5bd86584bf1"
+      ]
+    ]
+  },
+  {
+    "id": "354defe8603b317d",
+    "type": "debug",
+    "z": "cb15302cb8a72433",
+    "name": "debug 1",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 680,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "b104c5bd86584bf1",
+    "type": "function",
+    "z": "cb15302cb8a72433",
+    "name": "Prepare ML Input",
+    "func": "\nconst d = msg.payload;\n\n// Check that MQTT delivered a JSON object\nif (!d || typeof d !== \"object\") {\n    node.error(\"Invalid sensor message\", msg);\n    return null;\n}\n\n// Validate all eight features required by Random Forest\nconst required = [\n    \"accelerometer1_rms\",\n    \"accelerometer2_rms\",\n    \"current\",\n    \"pressure\",\n    \"temperature\",\n    \"thermocouple\",\n    \"voltage\",\n    \"volume_flow_rate_rms\"\n];\n\nfor (const key of required) {\n    if (\n        d[key] === undefined ||\n        d[key] === null ||\n        !Number.isFinite(Number(d[key]))\n    ) {\n        node.error(\"Missing or invalid feature: \" + key, msg);\n        return null;\n    }\n}\n\n// Preserve original sensor readings\nmsg.sensorData = d;\n\n// Record local request start time\nmsg.edgeStart = Date.now();\n\n// Set HTTP headers\nmsg.headers = {\n    \"Content-Type\": \"application/json\"\n};\n\n// Map Wokwi fields to FastAPI field names\nmsg.payload = {\n    accelerometer1_rms: Number(d.accelerometer1_rms),\n    accelerometer2_rms: Number(d.accelerometer2_rms),\n    current: Number(d.current),\n    pressure: Number(d.pressure),\n    temperature: Number(d.temperature),\n    thermocouple: Number(d.thermocouple),\n    voltage: Number(d.voltage),\n    volume_flow_rate_rms: Number(d.volume_flow_rate_rms)\n};\n\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 410,
+    "y": 300,
+    "wires": [
+      [
+        "81d51c13db0da7eb"
+      ]
+    ]
+  },
+  {
+    "id": "81d51c13db0da7eb",
+    "type": "http request",
+    "z": "cb15302cb8a72433",
+    "name": "",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://127.0.0.1:8000/predict",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 690,
+    "y": 300,
+    "wires": [
+      [
+        "538ec46ed40a47e1"
+      ]
+    ]
+  },
+  {
+    "id": "538ec46ed40a47e1",
+    "type": "function",
+    "z": "cb15302cb8a72433",
+    "name": "Local Edge Decision",
+    "func": "\nconst prediction = msg.payload;\nconst sensors = msg.sensorData || {};\n\n// Measure elapsed time for the local API request\nconst latency = Date.now() - msg.edgeStart;\n\nif (!prediction || !prediction.status) {\n    node.error(\"Invalid prediction response\", msg);\n    return null;\n}\n\nconst anomaly = prediction.status === \"ANOMALY\";\n\nmsg.payload = {\n    machine_id: sensors.machine_id || \"machine01\",\n\n    data_source: sensors.data_source || \"UNKNOWN\",\n\n    temperature: sensors.temperature,\n    current: sensors.current,\n    pressure: sensors.pressure,\n    voltage: sensors.voltage,\n    vibration: sensors.vibration,\n\n    status: prediction.status,\n\n    anomaly_probability: prediction.anomaly_probability,\n\n    threshold: prediction.threshold,\n\n    decision_location: \"LOCAL_LAPTOP\",\n\n    action: anomaly\n        ? \"ALERT_AND_SIMULATED_MACHINE_SLOWDOWN\"\n        : \"NORMAL_OPERATION\",\n\n    inference_latency_ms: latency\n};\n\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 920,
+    "y": 280,
+    "wires": [
+      [
+        "4ff58f7e41cae876",
+        "752e7c01aa41fbbe",
+        "2b7d4049345e5c8a",
+        "65cb30fc35832580",
+        "6b41b02281a173d9",
+        "a2d58922c17c5117",
+        "91d62b706d7b96fe",
+        "8e8e037049ae0521"
+      ]
+    ]
+  },
+  {
+    "id": "4ff58f7e41cae876",
+    "type": "debug",
+    "z": "cb15302cb8a72433",
+    "name": "debug 2",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1160,
+    "y": 280,
+    "wires": []
+  },
+  {
+    "id": "539ac3432c1fb2aa",
+    "type": "ui-gauge",
+    "z": "cb15302cb8a72433",
+    "name": "",
+    "group": "2c74292f2561ca4f",
+    "order": 7,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 3,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Temperature",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "\t°C",
+    "icon": "",
+    "prefix": "",
+    "suffix": "",
+    "segments": [
+      {
+        "from": "0",
+        "color": "#5cd65c",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "4",
+        "color": "#ffc800",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "7",
+        "color": "#ea5353",
+        "text": "",
+        "textType": "label"
+      }
+    ],
+    "min": 0,
+    "max": "100",
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1250,
+    "y": 440,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "752e7c01aa41fbbe",
+    "type": "change",
+    "z": "cb15302cb8a72433",
+    "name": "temp",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "msg.payload.temperature",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1010,
+    "y": 440,
+    "wires": [
+      [
+        "539ac3432c1fb2aa"
+      ]
+    ]
+  },
+  {
+    "id": "8e32530405d523d6",
+    "type": "ui-gauge",
+    "z": "cb15302cb8a72433",
+    "name": "",
+    "group": "2c74292f2561ca4f",
+    "order": 6,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 3,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "current",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "A",
+    "icon": "",
+    "prefix": "",
+    "suffix": "",
+    "segments": [
+      {
+        "from": "0",
+        "color": "#5cd65c",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "4",
+        "color": "#ffc800",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "7",
+        "color": "#ea5353",
+        "text": "",
+        "textType": "label"
+      }
+    ],
+    "min": 0,
+    "max": 10,
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1260,
+    "y": 560,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "2b7d4049345e5c8a",
+    "type": "change",
+    "z": "cb15302cb8a72433",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "msg.payload.current",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1000,
+    "y": 560,
+    "wires": [
+      [
+        "8e32530405d523d6"
+      ]
+    ]
+  },
+  {
+    "id": "65cb30fc35832580",
+    "type": "change",
+    "z": "cb15302cb8a72433",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "msg.payload.pressure",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1000,
+    "y": 660,
+    "wires": [
+      [
+        "a08ebcf171d691a1"
+      ]
+    ]
+  },
+  {
+    "id": "6b41b02281a173d9",
+    "type": "change",
+    "z": "cb15302cb8a72433",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "msg.payload.voltage",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1000,
+    "y": 740,
+    "wires": [
+      [
+        "b2135afb422f873b"
+      ]
+    ]
+  },
+  {
+    "id": "a08ebcf171d691a1",
+    "type": "ui-gauge",
+    "z": "cb15302cb8a72433",
+    "name": "Pressure",
+    "group": "2c74292f2561ca4f",
+    "order": 5,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 3,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Pressure",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "P",
+    "icon": "",
+    "prefix": "",
+    "suffix": "",
+    "segments": [
+      {
+        "from": "0",
+        "color": "#5cd65c",
+        "text": "Normal",
+        "textType": "str"
+      },
+      {
+        "from": "3",
+        "color": "#ea5353",
+        "text": "High",
+        "textType": "str"
+      }
+    ],
+    "min": 0,
+    "max": "10",
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1260,
+    "y": 660,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "b2135afb422f873b",
+    "type": "ui-gauge",
+    "z": "cb15302cb8a72433",
+    "name": "voltage",
+    "group": "2c74292f2561ca4f",
+    "order": 4,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 3,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "voltage",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "units",
+    "icon": "",
+    "prefix": "",
+    "suffix": "",
+    "segments": [
+      {
+        "from": "0",
+        "color": "#5cd65c",
+        "text": "Normal",
+        "textType": "str"
+      }
+    ],
+    "min": 0,
+    "max": "250",
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1260,
+    "y": 740,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "729def6fccb8d6f6",
+    "type": "ui-gauge",
+    "z": "cb15302cb8a72433",
+    "name": "",
+    "group": "2c74292f2561ca4f",
+    "order": 3,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 3,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "\tAnomaly Probability",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "%",
+    "icon": "",
+    "prefix": "",
+    "suffix": "",
+    "segments": [
+      {
+        "from": "0",
+        "color": "#5cd65c",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "18",
+        "color": "#ea5353",
+        "text": "",
+        "textType": "label"
+      }
+    ],
+    "min": 0,
+    "max": "100",
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1300,
+    "y": 880,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "a2d58922c17c5117",
+    "type": "function",
+    "z": "cb15302cb8a72433",
+    "name": "function 1",
+    "func": "msg.payload = Number(msg.payload.anomaly_probability) * 100;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 980,
+    "y": 880,
+    "wires": [
+      [
+        "729def6fccb8d6f6"
+      ]
+    ]
+  },
+  {
+    "id": "bdd15f8d36152b65",
+    "type": "ui-gauge",
+    "z": "cb15302cb8a72433",
+    "name": "",
+    "group": "2c74292f2561ca4f",
+    "order": 2,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 3,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Edge Inference Latency",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "ms",
+    "icon": "",
+    "prefix": "",
+    "suffix": "",
+    "segments": [
+      {
+        "from": "0",
+        "color": "#5cd65c",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "100",
+        "color": "#ffc800",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "400",
+        "color": "#ea5353",
+        "text": "",
+        "textType": "label"
+      }
+    ],
+    "min": 0,
+    "max": "1000",
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1350,
+    "y": 980,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "91d62b706d7b96fe",
+    "type": "change",
+    "z": "cb15302cb8a72433",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "msg.payload.inference_latency_ms",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1020,
+    "y": 980,
+    "wires": [
+      [
+        "bdd15f8d36152b65"
+      ]
+    ]
+  },
+  {
+    "id": "8e8e037049ae0521",
+    "type": "function",
+    "z": "cb15302cb8a72433",
+    "name": "Format Machine Status",
+    "func": "const status = msg.payload.status || \"UNKNOWN\";\n\nmsg.payload = status;\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1070,
+    "y": 1100,
+    "wires": [
+      [
+        "97c5bbb44c68ca73"
+      ]
+    ]
+  },
+  {
+    "id": "97c5bbb44c68ca73",
+    "type": "ui-text",
+    "z": "cb15302cb8a72433",
+    "group": "2c74292f2561ca4f",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "name": "\tMachine Status",
+    "label": "\tMachine Status",
+    "format": "{{msg.payload}}",
+    "layout": "col-center",
+    "style": false,
+    "font": "",
+    "fontSize": 16,
+    "color": "#717171",
+    "wrapText": false,
+    "className": "",
+    "value": "payload",
+    "valueType": "msg",
+    "x": 1420,
+    "y": 1100,
+    "wires": []
+  },
+  {
+    "id": "mqtt_in_telemetry",
+    "type": "mqtt in",
+    "z": "tab_compressor",
+    "name": "Compressor Telemetry MQTT",
+    "topic": "factory/compressor/sensors",
+    "qos": "1",
+    "datatype": "auto-detect",
+    "broker": "broker_local",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 160,
+    "y": 200,
+    "wires": [
+      [
+        "debug_raw_mqtt",
+        "func_prepare_payload"
+      ]
+    ]
+  },
+  {
+    "id": "debug_raw_mqtt",
+    "type": "debug",
+    "z": "tab_compressor",
+    "name": "Raw Ingest Debug",
+    "active": false,
+    "tosidebar": true,
+    "complete": "payload",
+    "x": 420,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "func_prepare_payload",
+    "type": "function",
+    "z": "tab_compressor",
+    "name": "Prepare Compressor Telemetry",
+    "func": "const d = msg.payload;\n\nif (!d || typeof d !== 'object') {\n    node.error(\"Invalid telemetry: payload must be a JSON object\", msg);\n    return null;\n}\n\n// Ensure sensors object exists\nif (!d.sensors || typeof d.sensors !== 'object') {\n    node.error(\"Invalid telemetry: missing 'sensors' dictionary\", msg);\n    return null;\n}\n\n// Record arrival time at edge gateway for end-to-end timing\nmsg.t_gateway_in = Date.now();\nmsg.raw_telemetry = d;\n\nmsg.headers = {\n    \"Content-Type\": \"application/json\"\n};\n\n// Route directly to FastAPI unified compressor analysis endpoint\nmsg.url = \"http://127.0.0.1:8000/compressor/analyse\";\nmsg.payload = d;\n\nreturn msg;",
+    "outputs": 1,
+    "x": 450,
+    "y": 200,
+    "wires": [
+      [
+        "http_analyse_request"
+      ]
+    ]
+  },
+  {
+    "id": "http_analyse_request",
+    "type": "http request",
+    "z": "tab_compressor",
+    "name": "POST /compressor/analyse",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://127.0.0.1:8000/compressor/analyse",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 730,
+    "y": 200,
+    "wires": [
+      [
+        "func_process_decision"
+      ]
+    ]
+  },
+  {
+    "id": "func_process_decision",
+    "type": "function",
+    "z": "tab_compressor",
+    "name": "Process Decision & Recommendations",
+    "func": "if (msg.statusCode !== 200 || !msg.payload?.overall_status) { node.error(\"Edge API unavailable or invalid decision\", msg); return null; }\nconst resp = msg.payload;\nconst raw = msg.raw_telemetry || {};\nconst sensors = raw.sensors || {};\nconst total_latency = Date.now() - (msg.t_gateway_in || Date.now());\n\nif (!resp) {\n    node.error(\"Empty response from inference backend\", msg);\n    return null;\n}\n\nconst status = resp.overall_status || resp.machine_status || \"NORMAL\";\nconst recs = resp.worker_recommendations || [];\nconst ml = resp.ml_inference || {};\nconst machine_id = resp.machine_id || \"COMPRESSOR_01\";\nconst source = (resp.source === \"SKAB_DATASET_REPLAY\") ? \"SKAB Benchmark Replay\" : \"Live Edge Sensors\";\nconst is_alert = (status === \"CRITICAL\" || status === \"CRITICAL ADVISORY\" || status === \"WARNING\");\n\n// ----------------------------------------------------\n// 1. Sleek Modern Header (Clean & Minimalist)\n// ----------------------------------------------------\nlet pill_color = \"#10b981\"; // green\nlet pill_bg = \"rgba(16, 185, 129, 0.15)\";\nlet pill_border = \"#059669\";\nlet pill_text = \"NORMAL\";\nlet pill_icon = \"🟢\";\n\nif (status === \"CRITICAL\" || status === \"CRITICAL ADVISORY\") {\n    pill_color = \"#ef4444\";\n    pill_bg = \"rgba(239, 68, 68, 0.18)\";\n    pill_border = \"#dc2626\";\n    pill_text = \"CRITICAL ADVISORY\";\n    pill_icon = \"🔴\";\n} else if (status === \"WARNING\") {\n    pill_color = \"#f59e0b\";\n    pill_bg = \"rgba(245, 158, 11, 0.18)\";\n    pill_border = \"#d97706\";\n    pill_text = \"WARNING ADVISORY\";\n    pill_icon = \"🟡\";\n} else if (status === \"SENSOR_FAULT\") {\n    pill_color = \"#94a3b8\";\n    pill_bg = \"rgba(148, 163, 184, 0.15)\";\n    pill_border = \"#64748b\";\n    pill_text = \"SENSOR FAULT\";\n    pill_icon = \"⚪\";\n}\n\nconst overview_html = `\n<div style=\"background:#1e293b; border:1px solid #334155; border-radius:12px; padding:16px 20px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; color:#f8fafc; box-shadow:0 4px 12px rgba(0,0,0,0.15);\">\n  <div style=\"display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;\">\n    <div>\n      <div style=\"display:flex; align-items:center; gap:10px;\">\n        <span style=\"font-size:22px;\">🏭</span>\n        <div>\n          <h2 style=\"margin:0; font-size:17px; font-weight:700; color:#38bdf8; letter-spacing:-0.2px;\">Two-Stage Industrial Compressor</h2>\n          <span style=\"font-size:12px; color:#94a3b8;\">Asset: <b>${machine_id}</b> • 15 kW • 10 Bar Discharge</span>\n        </div>\n      </div>\n    </div>\n\n    <!-- Status Badge -->\n    <div style=\"background:${pill_bg}; border:1px solid ${pill_border}; border-radius:24px; padding:6px 16px; display:flex; align-items:center; gap:8px;\">\n      <span style=\"font-size:12px;\">${pill_icon}</span>\n      <span style=\"color:${pill_color}; font-weight:700; font-size:13px; letter-spacing:0.5px;\">${pill_text}</span>\n    </div>\n  </div>\n\n  <!-- KPI Badges Row -->\n  <div style=\"display:flex; gap:12px; margin-top:14px; padding-top:12px; border-top:1px solid #334155; flex-wrap:wrap; font-size:12px;\">\n    <span style=\"background:#0f172a; padding:4px 10px; border-radius:6px; color:#cbd5e1; border:1px solid #334155;\">\n      📡 Source: <b style=\"color:#f8fafc;\">${source}</b>\n    </span>\n    <span style=\"background:#0f172a; padding:4px 10px; border-radius:6px; color:#cbd5e1; border:1px solid #334155;\">\n      ⚡ Edge Latency: <b style=\"color:#38bdf8;\">${total_latency} ms</b>\n    </span>\n    <span style=\"background:#0f172a; padding:4px 10px; border-radius:6px; color:#cbd5e1; border:1px solid #334155;\">\n      ☁️ Cloud: <b style=\"color:#10b981;\">Optional ThingsBoard sync</b>\n    </span>\n    <span style=\"background:#0f172a; padding:4px 10px; border-radius:6px; color:#cbd5e1; border:1px solid #334155; margin-left:auto;\">\n      🛡️ <span style=\"color:#94a3b8;\">Advisory Mode</span>\n    </span>\n  </div>\n</div>\n`;\n\n// ----------------------------------------------------\n// 2. Machine Learning Diagnostics Panel (Clean 1-Card)\n// ----------------------------------------------------\nlet ml_html = \"\";\nif (ml && ml.ml_available) {\n    const is_anom = (ml.status === \"ANOMALY\");\n    const anom_pct = ((ml.anomaly_probability || 0) * 100).toFixed(1);\n    const thresh_pct = ((ml.threshold ?? 0) * 100).toFixed(1);\n    ml_html = `\n    <div style=\"background:#1e293b; border:1px solid ${is_anom ? '#ef4444' : '#10b981'}; border-radius:10px; padding:12px 16px; font-family:sans-serif; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;\">\n      <div>\n        <b style=\"color:#38bdf8; font-size:13px;\">🧠 Unified Anomaly Model (8 Features — SKAB Replay)</b>\n        <div style=\"font-size:12px; color:#cbd5e1; margin-top:2px;\">\n          Anomaly Score: <b style=\"color:${is_anom ? '#ef4444' : '#10b981'};\">${anom_pct}%</b> (Threshold: ${thresh_pct}%) • Top Factor: <b>${ml.top_contributor || 'Unavailable'}</b>\n        </div>\n      </div>\n      <span style=\"background:${is_anom ? '#ef4444' : '#10b981'}; color:#fff; font-weight:700; font-size:11px; padding:3px 10px; border-radius:12px;\">${ml.status}</span>\n    </div>\n    `;\n} else {\n    ml_html = `\n    <div style=\"background:#1e293b; border:1px solid #334155; border-radius:10px; padding:10px 16px; font-family:sans-serif; display:flex; justify-content:space-between; align-items:center; font-size:12px; color:#94a3b8;\">\n      <span>🧠 <b>Edge AI:</b> 5-Sensor Compressor Rule Engine Operating Autonomously</span>\n      <span style=\"background:#0f172a; padding:3px 8px; border-radius:4px; font-size:11px; color:#64748b; border:1px solid #334155;\">8-Feature Contract Enforced</span>\n    </div>\n    `;\n}\n\n// ----------------------------------------------------\n// 3. Actionable Worker Decisions (Clean, Essential Only)\n// ----------------------------------------------------\nlet recs_html = \"\";\nif (!recs || recs.length === 0) {\n    recs_html = `\n    <div style=\"background:rgba(16, 185, 129, 0.1); border:1px solid #059669; border-radius:10px; padding:14px 18px; font-family:sans-serif; display:flex; align-items:center; gap:12px;\">\n      <span style=\"font-size:20px;\">✅</span>\n      <div>\n        <b style=\"color:#34d399; font-size:14px;\">No worker alert for this reading.</b>\n        <div style=\"font-size:12px; color:#94a3b8; margin-top:2px;\">Continuous edge monitoring active. No worker corrective action required.</div>\n      </div>\n    </div>\n    `;\n} else {\n    // Show only the top 2 alerts at most to keep dashboard clean and avoid wall of text\n    const display_recs = recs.slice(0, 2);\n\n    recs_html = display_recs.map(r => {\n        const is_crit = (r.severity === \"CRITICAL\" || r.severity === \"CRITICAL ADVISORY\");\n        const card_border = is_crit ? \"#ef4444\" : \"#f59e0b\";\n        const badge_bg = is_crit ? \"#ef4444\" : \"#f59e0b\";\n        const causes = (r.possible_causes || []).slice(0, 2); // Top 2 causes\n        const actions = (r.recommended_worker_actions || []).slice(0, 3); // Top 3 actions\n\n        return `\n        <div style=\"background:#1e293b; border:1px solid ${card_border}; border-left:5px solid ${card_border}; border-radius:10px; padding:14px 18px; margin-bottom:12px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;\">\n          <!-- Card Header -->\n          <div style=\"display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #334155; padding-bottom:8px;\">\n            <div>\n              <b style=\"color:#f8fafc; font-size:14px;\">${r.alert_title || r.alert_type}</b>\n              <span style=\"font-size:12px; color:#38bdf8; margin-left:8px;\">(${r.sensor}: <b>${r.measured_value} ${r.unit || ''}</b>)</span>\n            </div>\n            <span style=\"background:${badge_bg}; color:#fff; font-weight:700; font-size:11px; padding:2px 8px; border-radius:4px;\">${r.severity}</span>\n          </div>\n\n          <!-- Content Grid: Cause on Left, Action on Right -->\n          <div style=\"display:grid; grid-template-columns:1fr 1.3fr; gap:16px; margin-top:10px; font-size:12px; color:#cbd5e1;\">\n            <div>\n              <b style=\"color:#fde68a;\">🔍 Probable Causes:</b>\n              <ul style=\"margin:4px 0 0 16px; padding:0; line-height:1.4; color:#94a3b8;\">\n                ${causes.map(c => `<li>${c}</li>`).join('')}\n              </ul>\n            </div>\n            <div>\n              <b style=\"color:#38bdf8;\">🛠️ Immediate Actions:</b>\n              <ol style=\"margin:4px 0 0 18px; padding:0; line-height:1.4; color:#f1f5f9;\">\n                ${actions.map(a => `<li>${a}</li>`).join('')}\n              </ol>\n            </div>\n          </div>\n\n          <!-- Card Footer -->\n          <div style=\"margin-top:10px; padding-top:6px; border-top:1px solid #334155; display:flex; justify-content:space-between; font-size:11px; color:#64748b;\">\n            <span>ID: <b>${r.alert_id}</b></span>\n            <span style=\"color:#f87171;\">⚠️ Advisory only. Follow site OEM procedure.</span>\n          </div>\n        </div>\n        `;\n    }).join('');\n}\n\n// Extract numeric sensor values for gauges\nconst s_temp = (sensors.temperature && sensors.temperature.value !== undefined) ? Number(sensors.temperature.value) : 0;\nconst s_vib = (sensors.vibration && sensors.vibration.value !== undefined) ? Number(sensors.vibration.value) : 0;\nconst s_press = (sensors.pressure && sensors.pressure.value !== undefined) ? Number(sensors.pressure.value) : 0;\nconst s_curr = (sensors.current && sensors.current.value !== undefined) ? Number(sensors.current.value) : 0;\nconst s_spd = (sensors.speed && sensors.speed.value !== undefined) ? Number(sensors.speed.value) : 0;\n\nreturn [\n    { payload: overview_html },\n    { payload: s_temp },\n    { payload: s_vib },\n    { payload: s_press },\n    { payload: s_curr },\n    { payload: s_spd },\n    { payload: ml_html },\n    { payload: recs_html },\n    { payload: total_latency }\n];\n",
+    "outputs": 9,
+    "x": 1030,
+    "y": 200,
+    "wires": [
+      [
+        "ui_overview_text"
+      ],
+      [
+        "ui_gauge_temp"
+      ],
+      [
+        "ui_gauge_vib"
+      ],
+      [
+        "ui_gauge_press"
+      ],
+      [
+        "ui_gauge_curr"
+      ],
+      [
+        "ui_gauge_spd"
+      ],
+      [
+        "ui_ml_result_text"
+      ],
+      [
+        "ui_worker_recs_text"
+      ],
+      [
+        "ui_latency_gauge"
+      ]
+    ]
+  },
+  {
+    "id": "ui_overview_text",
+    "type": "ui-text",
+    "z": "tab_compressor",
+    "group": "group_overview",
+    "order": 1,
+    "width": 12,
+    "height": 3,
+    "name": "Machine Overview Display",
+    "label": "",
+    "format": "{{msg.payload}}",
+    "layout": "col-center",
+    "className": "",
+    "x": 1350,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "ui_gauge_temp",
+    "type": "ui-gauge",
+    "z": "tab_compressor",
+    "name": "Temperature Gauge",
+    "group": "group_sensors",
+    "order": 1,
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge",
+    "title": "Temperature",
+    "min": 40,
+    "max": 130,
+    "x": 1350,
+    "y": 140,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "ui_gauge_vib",
+    "type": "ui-gauge",
+    "z": "tab_compressor",
+    "name": "Vibration Gauge",
+    "group": "group_sensors",
+    "order": 11,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge",
+    "title": "Vibration",
+    "alwaysShowTitle": false,
+    "units": "",
+    "icon": "",
+    "prefix": "",
+    "suffix": "",
+    "segments": [],
+    "min": 0,
+    "max": 1,
+    "sizeThickness": "",
+    "sizeGap": "",
+    "sizeKeyThickness": "",
+    "className": "",
+    "x": 1350,
+    "y": 200,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "ui_gauge_press",
+    "type": "ui-gauge",
+    "z": "tab_compressor",
+    "name": "Pressure Gauge",
+    "group": "group_sensors",
+    "order": 10,
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge",
+    "title": "Pressure",
+    "min": 2,
+    "max": 14,
+    "x": 1350,
+    "y": 260,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "ui_gauge_curr",
+    "type": "ui-gauge",
+    "z": "tab_compressor",
+    "name": "Current Gauge",
+    "group": "group_sensors",
+    "order": 9,
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge",
+    "title": "Current",
+    "min": 5,
+    "max": 35,
+    "x": 1350,
+    "y": 320,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "ui_gauge_spd",
+    "type": "ui-gauge",
+    "z": "tab_compressor",
+    "name": "Speed Gauge",
+    "group": "group_sensors",
+    "order": 8,
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge",
+    "title": "Speed",
+    "min": 1000,
+    "max": 1800,
+    "x": 1350,
+    "y": 380,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "ui_ml_result_text",
+    "type": "ui-text",
+    "z": "tab_compressor",
+    "group": "group_ml",
+    "order": 1,
+    "width": 12,
+    "height": 3,
+    "name": "ML Inference Display",
+    "label": "",
+    "format": "{{msg.payload}}",
+    "layout": "col-center",
+    "x": 1350,
+    "y": 440,
+    "wires": []
+  },
+  {
+    "id": "ui_worker_recs_text",
+    "type": "ui-text",
+    "z": "tab_compressor",
+    "group": "group_alerts",
+    "order": 1,
+    "width": 12,
+    "height": 6,
+    "name": "Worker Recommendations Panel",
+    "label": "",
+    "format": "{{msg.payload}}",
+    "layout": "col-center",
+    "x": 1350,
+    "y": 500,
+    "wires": []
+  },
+  {
+    "id": "ui_latency_gauge",
+    "type": "ui-gauge",
+    "z": "tab_compressor",
+    "name": "Latency Gauge",
+    "group": "group_performance",
+    "order": 1,
+    "width": 6,
+    "height": 3,
+    "gtype": "gauge",
+    "title": "Latency",
+    "min": 0,
+    "max": 150,
+    "x": 1350,
+    "y": 560,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "a9b828593ffa0e92",
+    "type": "mqtt in",
+    "z": "eec8baf24085af31",
+    "name": "Compressor Telemetry MQTT",
+    "topic": "factory/compressor/sensors",
+    "qos": "1",
+    "datatype": "auto-detect",
+    "broker": "broker_local",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 160,
+    "y": 200,
+    "wires": [
+      [
+        "78fb33ddecde078c",
+        "8bd1c850e1a10424"
+      ]
+    ]
+  },
+  {
+    "id": "78fb33ddecde078c",
+    "type": "debug",
+    "z": "eec8baf24085af31",
+    "name": "Raw Ingest Debug",
+    "active": false,
+    "tosidebar": true,
+    "complete": "payload",
+    "x": 420,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "8bd1c850e1a10424",
+    "type": "function",
+    "z": "eec8baf24085af31",
+    "name": "Prepare Compressor Telemetry",
+    "func": "const d = msg.payload;\n\nif (!d || typeof d !== 'object') {\n    node.error(\"Invalid telemetry: payload must be a JSON object\", msg);\n    return null;\n}\n\n// Ensure sensors object exists\nif (!d.sensors || typeof d.sensors !== 'object') {\n    node.error(\"Invalid telemetry: missing 'sensors' dictionary\", msg);\n    return null;\n}\n\n// Record arrival time at edge gateway for end-to-end timing\nmsg.t_gateway_in = Date.now();\nmsg.raw_telemetry = d;\n\nmsg.headers = {\n    \"Content-Type\": \"application/json\"\n};\n\n// Route directly to FastAPI unified compressor analysis endpoint\nmsg.url = \"http://127.0.0.1:8000/compressor/analyse\";\nmsg.payload = d;\n\nreturn msg;",
+    "outputs": 1,
+    "x": 450,
+    "y": 200,
+    "wires": [
+      [
+        "1ba082e4d30d3963"
+      ]
+    ]
+  },
+  {
+    "id": "1ba082e4d30d3963",
+    "type": "http request",
+    "z": "eec8baf24085af31",
+    "name": "POST /compressor/analyse",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://127.0.0.1:8000/compressor/analyse",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 730,
+    "y": 200,
+    "wires": [
+      [
+        "dce0784614187df6"
+      ]
+    ]
+  },
+  {
+    "id": "dce0784614187df6",
+    "type": "function",
+    "z": "eec8baf24085af31",
+    "name": "Process Decision & Recommendations",
+    "func": "if (msg.statusCode !== 200 || !msg.payload?.overall_status) { node.error(\"Edge API unavailable or invalid decision\", msg); return null; }\nconst resp = msg.payload;\nconst raw = msg.raw_telemetry || {};\nconst sensors = raw.sensors || {};\nconst total_latency = Date.now() - (msg.t_gateway_in || Date.now());\n\nif (!resp) {\n    node.error(\"Empty response from inference backend\", msg);\n    return null;\n}\n\nconst status = resp.overall_status || resp.machine_status || \"NORMAL\";\nconst recs = resp.worker_recommendations || [];\nconst ml = resp.ml_inference || {};\nconst machine_id = resp.machine_id || \"COMPRESSOR_01\";\nconst source = (resp.source === \"SKAB_DATASET_REPLAY\") ? \"SKAB Benchmark Replay\" : \"Live Edge Sensors\";\nconst is_alert = (status === \"CRITICAL\" || status === \"CRITICAL ADVISORY\" || status === \"WARNING\");\n\n// ----------------------------------------------------\n// 1. Sleek Modern Header (Clean & Minimalist)\n// ----------------------------------------------------\nlet pill_color = \"#10b981\"; // green\nlet pill_bg = \"rgba(16, 185, 129, 0.15)\";\nlet pill_border = \"#059669\";\nlet pill_text = \"NORMAL\";\nlet pill_icon = \"🟢\";\n\nif (status === \"CRITICAL\" || status === \"CRITICAL ADVISORY\") {\n    pill_color = \"#ef4444\";\n    pill_bg = \"rgba(239, 68, 68, 0.18)\";\n    pill_border = \"#dc2626\";\n    pill_text = \"CRITICAL ADVISORY\";\n    pill_icon = \"🔴\";\n} else if (status === \"WARNING\") {\n    pill_color = \"#f59e0b\";\n    pill_bg = \"rgba(245, 158, 11, 0.18)\";\n    pill_border = \"#d97706\";\n    pill_text = \"WARNING ADVISORY\";\n    pill_icon = \"🟡\";\n} else if (status === \"SENSOR_FAULT\") {\n    pill_color = \"#94a3b8\";\n    pill_bg = \"rgba(148, 163, 184, 0.15)\";\n    pill_border = \"#64748b\";\n    pill_text = \"SENSOR FAULT\";\n    pill_icon = \"⚪\";\n}\n\nconst overview_html = `\n<div style=\"background:#1e293b; border:1px solid #334155; border-radius:12px; padding:16px 20px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; color:#f8fafc; box-shadow:0 4px 12px rgba(0,0,0,0.15);\">\n  <div style=\"display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;\">\n    <div>\n      <div style=\"display:flex; align-items:center; gap:10px;\">\n        <span style=\"font-size:22px;\">🏭</span>\n        <div>\n          <h2 style=\"margin:0; font-size:17px; font-weight:700; color:#38bdf8; letter-spacing:-0.2px;\">Two-Stage Industrial Compressor</h2>\n          <span style=\"font-size:12px; color:#94a3b8;\">Asset: <b>${machine_id}</b> • 15 kW • 10 Bar Discharge</span>\n        </div>\n      </div>\n    </div>\n\n    <!-- Status Badge -->\n    <div style=\"background:${pill_bg}; border:1px solid ${pill_border}; border-radius:24px; padding:6px 16px; display:flex; align-items:center; gap:8px;\">\n      <span style=\"font-size:12px;\">${pill_icon}</span>\n      <span style=\"color:${pill_color}; font-weight:700; font-size:13px; letter-spacing:0.5px;\">${pill_text}</span>\n    </div>\n  </div>\n\n  <!-- KPI Badges Row -->\n  <div style=\"display:flex; gap:12px; margin-top:14px; padding-top:12px; border-top:1px solid #334155; flex-wrap:wrap; font-size:12px;\">\n    <span style=\"background:#0f172a; padding:4px 10px; border-radius:6px; color:#cbd5e1; border:1px solid #334155;\">\n      📡 Source: <b style=\"color:#f8fafc;\">${source}</b>\n    </span>\n    <span style=\"background:#0f172a; padding:4px 10px; border-radius:6px; color:#cbd5e1; border:1px solid #334155;\">\n      ⚡ Edge Latency: <b style=\"color:#38bdf8;\">${total_latency} ms</b>\n    </span>\n    <span style=\"background:#0f172a; padding:4px 10px; border-radius:6px; color:#cbd5e1; border:1px solid #334155;\">\n      ☁️ Cloud: <b style=\"color:#10b981;\">Optional ThingsBoard sync</b>\n    </span>\n    <span style=\"background:#0f172a; padding:4px 10px; border-radius:6px; color:#cbd5e1; border:1px solid #334155; margin-left:auto;\">\n      🛡️ <span style=\"color:#94a3b8;\">Advisory Mode</span>\n    </span>\n  </div>\n</div>\n`;\n\n// ----------------------------------------------------\n// 2. Machine Learning Diagnostics Panel (Clean 1-Card)\n// ----------------------------------------------------\nlet ml_html = \"\";\nif (ml && ml.ml_available) {\n    const is_anom = (ml.status === \"ANOMALY\");\n    const anom_pct = ((ml.anomaly_probability || 0) * 100).toFixed(1);\n    const thresh_pct = ((ml.threshold ?? 0) * 100).toFixed(1);\n    ml_html = `\n    <div style=\"background:#1e293b; border:1px solid ${is_anom ? '#ef4444' : '#10b981'}; border-radius:10px; padding:12px 16px; font-family:sans-serif; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;\">\n      <div>\n        <b style=\"color:#38bdf8; font-size:13px;\">🧠 Unified Anomaly Model (8 Features — SKAB Replay)</b>\n        <div style=\"font-size:12px; color:#cbd5e1; margin-top:2px;\">\n          Anomaly Score: <b style=\"color:${is_anom ? '#ef4444' : '#10b981'};\">${anom_pct}%</b> (Threshold: ${thresh_pct}%) • Top Factor: <b>${ml.top_contributor || 'Unavailable'}</b>\n        </div>\n      </div>\n      <span style=\"background:${is_anom ? '#ef4444' : '#10b981'}; color:#fff; font-weight:700; font-size:11px; padding:3px 10px; border-radius:12px;\">${ml.status}</span>\n    </div>\n    `;\n} else {\n    ml_html = `\n    <div style=\"background:#1e293b; border:1px solid #334155; border-radius:10px; padding:10px 16px; font-family:sans-serif; display:flex; justify-content:space-between; align-items:center; font-size:12px; color:#94a3b8;\">\n      <span>🧠 <b>Edge AI:</b> 5-Sensor Compressor Rule Engine Operating Autonomously</span>\n      <span style=\"background:#0f172a; padding:3px 8px; border-radius:4px; font-size:11px; color:#64748b; border:1px solid #334155;\">8-Feature Contract Enforced</span>\n    </div>\n    `;\n}\n\n// ----------------------------------------------------\n// 3. Actionable Worker Decisions (Clean, Essential Only)\n// ----------------------------------------------------\nlet recs_html = \"\";\nif (!recs || recs.length === 0) {\n    recs_html = `\n    <div style=\"background:rgba(16, 185, 129, 0.1); border:1px solid #059669; border-radius:10px; padding:14px 18px; font-family:sans-serif; display:flex; align-items:center; gap:12px;\">\n      <span style=\"font-size:20px;\">✅</span>\n      <div>\n        <b style=\"color:#34d399; font-size:14px;\">No worker alert for this reading.</b>\n        <div style=\"font-size:12px; color:#94a3b8; margin-top:2px;\">Continuous edge monitoring active. No worker corrective action required.</div>\n      </div>\n    </div>\n    `;\n} else {\n    // Show only the top 2 alerts at most to keep dashboard clean and avoid wall of text\n    const display_recs = recs.slice(0, 2);\n\n    recs_html = display_recs.map(r => {\n        const is_crit = (r.severity === \"CRITICAL\" || r.severity === \"CRITICAL ADVISORY\");\n        const card_border = is_crit ? \"#ef4444\" : \"#f59e0b\";\n        const badge_bg = is_crit ? \"#ef4444\" : \"#f59e0b\";\n        const causes = (r.possible_causes || []).slice(0, 2); // Top 2 causes\n        const actions = (r.recommended_worker_actions || []).slice(0, 3); // Top 3 actions\n\n        return `\n        <div style=\"background:#1e293b; border:1px solid ${card_border}; border-left:5px solid ${card_border}; border-radius:10px; padding:14px 18px; margin-bottom:12px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;\">\n          <!-- Card Header -->\n          <div style=\"display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #334155; padding-bottom:8px;\">\n            <div>\n              <b style=\"color:#f8fafc; font-size:14px;\">${r.alert_title || r.alert_type}</b>\n              <span style=\"font-size:12px; color:#38bdf8; margin-left:8px;\">(${r.sensor}: <b>${r.measured_value} ${r.unit || ''}</b>)</span>\n            </div>\n            <span style=\"background:${badge_bg}; color:#fff; font-weight:700; font-size:11px; padding:2px 8px; border-radius:4px;\">${r.severity}</span>\n          </div>\n\n          <!-- Content Grid: Cause on Left, Action on Right -->\n          <div style=\"display:grid; grid-template-columns:1fr 1.3fr; gap:16px; margin-top:10px; font-size:12px; color:#cbd5e1;\">\n            <div>\n              <b style=\"color:#fde68a;\">🔍 Probable Causes:</b>\n              <ul style=\"margin:4px 0 0 16px; padding:0; line-height:1.4; color:#94a3b8;\">\n                ${causes.map(c => `<li>${c}</li>`).join('')}\n              </ul>\n            </div>\n            <div>\n              <b style=\"color:#38bdf8;\">🛠️ Immediate Actions:</b>\n              <ol style=\"margin:4px 0 0 18px; padding:0; line-height:1.4; color:#f1f5f9;\">\n                ${actions.map(a => `<li>${a}</li>`).join('')}\n              </ol>\n            </div>\n          </div>\n\n          <!-- Card Footer -->\n          <div style=\"margin-top:10px; padding-top:6px; border-top:1px solid #334155; display:flex; justify-content:space-between; font-size:11px; color:#64748b;\">\n            <span>ID: <b>${r.alert_id}</b></span>\n            <span style=\"color:#f87171;\">⚠️ Advisory only. Follow site OEM procedure.</span>\n          </div>\n        </div>\n        `;\n    }).join('');\n}\n\n// Extract numeric sensor values for gauges\nconst s_temp = (sensors.temperature && sensors.temperature.value !== undefined) ? Number(sensors.temperature.value) : 0;\nconst s_vib = (sensors.vibration && sensors.vibration.value !== undefined) ? Number(sensors.vibration.value) : 0;\nconst s_press = (sensors.pressure && sensors.pressure.value !== undefined) ? Number(sensors.pressure.value) : 0;\nconst s_curr = (sensors.current && sensors.current.value !== undefined) ? Number(sensors.current.value) : 0;\nconst s_spd = (sensors.speed && sensors.speed.value !== undefined) ? Number(sensors.speed.value) : 0;\n\nreturn [\n    { payload: overview_html },\n    { payload: s_temp },\n    { payload: s_vib },\n    { payload: s_press },\n    { payload: s_curr },\n    { payload: s_spd },\n    { payload: ml_html },\n    { payload: recs_html },\n    { payload: total_latency }\n];\n",
+    "outputs": 9,
+    "x": 1030,
+    "y": 200,
+    "wires": [
+      [
+        "26ebe4fe90b6a127"
+      ],
+      [
+        "feb1de8a2495a041"
+      ],
+      [
+        "50b2db521bbf042a"
+      ],
+      [
+        "351725f79eb3109e"
+      ],
+      [
+        "39f78fb4dbadd975"
+      ],
+      [
+        "8c673c0102dd8f4b"
+      ],
+      [
+        "e57c1f807244d3cb"
+      ],
+      [
+        "d4911c6764aa4987"
+      ],
+      [
+        "aeb4f160d2659745"
+      ]
+    ]
+  },
+  {
+    "id": "26ebe4fe90b6a127",
+    "type": "ui-text",
+    "z": "eec8baf24085af31",
+    "group": "group_overview",
+    "order": 3,
+    "width": 12,
+    "height": 3,
+    "name": "Machine Overview Display",
+    "label": "",
+    "format": "{{msg.payload}}",
+    "layout": "col-center",
+    "className": "",
+    "x": 1350,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "feb1de8a2495a041",
+    "type": "ui-gauge",
+    "z": "eec8baf24085af31",
+    "name": "Temperature Gauge",
+    "group": "group_sensors",
+    "order": 15,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Temperature",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "°C",
+    "segments": [
+      {
+        "from": "0",
+        "color": "#5cd65c",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "95",
+        "color": "#ffc800",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "105",
+        "color": "#ea5353",
+        "text": "",
+        "textType": "label"
+      }
+    ],
+    "min": 0,
+    "max": 130,
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1350,
+    "y": 140,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "50b2db521bbf042a",
+    "type": "ui-gauge",
+    "z": "eec8baf24085af31",
+    "name": "Vibration Gauge",
+    "group": "group_sensors",
+    "order": 14,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Vibration",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "g RMS",
+    "segments": [
+      {
+        "from": "0",
+        "color": "#5cd65c",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "0.3",
+        "color": "#ffc800",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "0.45",
+        "color": "#ea5353",
+        "text": "",
+        "textType": "label"
+      }
+    ],
+    "min": 0,
+    "max": 1,
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1350,
+    "y": 200,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "351725f79eb3109e",
+    "type": "ui-gauge",
+    "z": "eec8baf24085af31",
+    "name": "Pressure Gauge",
+    "group": "group_sensors",
+    "order": 13,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Pressure",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "bar",
+    "segments": [
+      {
+        "from": "2",
+        "color": "#5cd65c",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "9.5",
+        "color": "#ffc800",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "10.5",
+        "color": "#ea5353",
+        "text": "",
+        "textType": "label"
+      }
+    ],
+    "min": 2,
+    "max": 14,
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1350,
+    "y": 260,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "39f78fb4dbadd975",
+    "type": "ui-gauge",
+    "z": "eec8baf24085af31",
+    "name": "Current Gauge",
+    "group": "group_sensors",
+    "order": 12,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Current",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "A",
+    "segments": [
+      {
+        "from": "5",
+        "color": "#5cd65c",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "22",
+        "color": "#ffc800",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "26",
+        "color": "#ea5353",
+        "text": "",
+        "textType": "label"
+      }
+    ],
+    "min": 5,
+    "max": 35,
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1350,
+    "y": 320,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "8c673c0102dd8f4b",
+    "type": "ui-gauge",
+    "z": "eec8baf24085af31",
+    "name": "Speed Gauge",
+    "group": "group_sensors",
+    "order": 7,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Speed",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "RPM",
+    "segments": [
+      {
+        "from": "1000",
+        "color": "#5cd65c",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "1480",
+        "color": "#ffc800",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "1520",
+        "color": "#ea5353",
+        "text": "",
+        "textType": "label"
+      }
+    ],
+    "min": 1000,
+    "max": 1800,
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1350,
+    "y": 380,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "e57c1f807244d3cb",
+    "type": "ui-text",
+    "z": "eec8baf24085af31",
+    "group": "group_ml",
+    "order": 3,
+    "width": 12,
+    "height": 3,
+    "name": "ML Inference Display",
+    "label": "",
+    "format": "{{msg.payload}}",
+    "layout": "col-center",
+    "x": 1350,
+    "y": 440,
+    "wires": []
+  },
+  {
+    "id": "d4911c6764aa4987",
+    "type": "ui-text",
+    "z": "eec8baf24085af31",
+    "group": "group_alerts",
+    "order": 3,
+    "width": 12,
+    "height": 6,
+    "name": "Worker Recommendations Panel",
+    "label": "",
+    "format": "{{msg.payload}}",
+    "layout": "col-center",
+    "x": 1350,
+    "y": 500,
+    "wires": []
+  },
+  {
+    "id": "aeb4f160d2659745",
+    "type": "ui-gauge",
+    "z": "eec8baf24085af31",
+    "name": "Latency Gauge",
+    "group": "group_performance",
+    "order": 3,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 6,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Latency",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "ms",
+    "segments": [
+      {
+        "from": "0",
+        "color": "#5cd65c",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "50",
+        "color": "#ffc800",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "100",
+        "color": "#ea5353",
+        "text": "",
+        "textType": "label"
+      }
+    ],
+    "min": 0,
+    "max": 150,
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1350,
+    "y": 560,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "853889903ea978b9",
+    "type": "mqtt in",
+    "z": "50d411bc49d22a09",
+    "name": "Compressor Telemetry MQTT",
+    "topic": "factory/compressor/sensors",
+    "qos": "1",
+    "datatype": "auto-detect",
+    "broker": "broker_local",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 160,
+    "y": 200,
+    "wires": [
+      [
+        "c71012bd69404cb2",
+        "24c073450c082040"
+      ]
+    ]
+  },
+  {
+    "id": "c71012bd69404cb2",
+    "type": "debug",
+    "z": "50d411bc49d22a09",
+    "name": "Raw Ingest Debug",
+    "active": false,
+    "tosidebar": true,
+    "complete": "payload",
+    "x": 420,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "24c073450c082040",
+    "type": "function",
+    "z": "50d411bc49d22a09",
+    "name": "Prepare Compressor Telemetry",
+    "func": "const d = msg.payload;\n\nif (!d || typeof d !== 'object') {\n    node.error(\"Invalid telemetry: payload must be a JSON object\", msg);\n    return null;\n}\n\n// Ensure sensors object exists\nif (!d.sensors || typeof d.sensors !== 'object') {\n    node.error(\"Invalid telemetry: missing 'sensors' dictionary\", msg);\n    return null;\n}\n\n// Record arrival time at edge gateway for end-to-end timing\nmsg.t_gateway_in = Date.now();\nmsg.raw_telemetry = d;\n\nmsg.headers = {\n    \"Content-Type\": \"application/json\"\n};\n\n// Route directly to FastAPI unified compressor analysis endpoint\nmsg.url = \"http://127.0.0.1:8000/compressor/analyse\";\nmsg.payload = d;\n\nreturn msg;",
+    "outputs": 1,
+    "x": 450,
+    "y": 200,
+    "wires": [
+      [
+        "79d1e5a95a9a270c"
+      ]
+    ]
+  },
+  {
+    "id": "79d1e5a95a9a270c",
+    "type": "http request",
+    "z": "50d411bc49d22a09",
+    "name": "POST /compressor/analyse",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://127.0.0.1:8000/compressor/analyse",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 730,
+    "y": 200,
+    "wires": [
+      [
+        "2cd0b57897da5ba5"
+      ]
+    ]
+  },
+  {
+    "id": "2cd0b57897da5ba5",
+    "type": "function",
+    "z": "50d411bc49d22a09",
+    "name": "Process Decision & Recommendations",
+    "func": "if (msg.statusCode !== 200 || !msg.payload?.overall_status) { node.error(\"Edge API unavailable or invalid decision\", msg); return null; }\n// ── Throttle: only update dashboard every 5 seconds ──────────────────────\nconst NOW = Date.now();\nconst THROTTLE_MS = 5000;\nif (!context.get('last_update')) context.set('last_update', 0);\nif (NOW - context.get('last_update') < THROTTLE_MS) {\n    return null;   // drop this message, too soon\n}\ncontext.set('last_update', NOW);\n// ─────────────────────────────────────────────────────────────────────────\n\nconst resp = msg.payload;\nconst raw = msg.raw_telemetry || {};\nconst total_latency = Date.now() - (msg.t_gateway_in || Date.now());\n\nif (!resp || typeof resp !== 'object') {\n    node.error(\"Empty/invalid response from FastAPI\", msg);\n    return null;\n}\n\nconst status = resp.overall_status || \"NORMAL\";\nconst recs   = resp.worker_recommendations || [];\nconst ml     = resp.ml_inference || {};\nconst machine_id = resp.machine_id || \"COMPRESSOR_01\";\nconst source = (resp.source === \"SKAB_DATASET_REPLAY\") ? \"SKAB Benchmark Replay\" : \"Live Edge Sensors\";\n\n// Read sensor values from the proper API field: resp.sensor_evaluations\nconst evals  = resp.sensor_evaluations || {};\nconst s_temp  = evals.temperature ? Number(evals.temperature.value)  : 0;\nconst s_vib   = evals.vibration   ? Number(evals.vibration.value)    : 0;\nconst s_press = evals.pressure    ? Number(evals.pressure.value)     : 0;\nconst s_curr  = evals.current     ? Number(evals.current.value)      : 0;\nconst s_spd   = evals.speed       ? Number(evals.speed.value)        : 0;\n\n// ── Status pill ───────────────────────────────────────────────────────────\nlet pill_color  = \"#10b981\";\nlet pill_bg     = \"rgba(16,185,129,0.15)\";\nlet pill_border = \"#059669\";\nlet pill_text   = \"NORMAL OPERATION\";\nlet pill_icon   = \"🟢\";\n\nif (status === \"CRITICAL\" || status === \"CRITICAL ADVISORY\") {\n    pill_color  = \"#ef4444\";\n    pill_bg     = \"rgba(239,68,68,0.18)\";\n    pill_border = \"#dc2626\";\n    pill_text   = \"CRITICAL ADVISORY\";\n    pill_icon   = \"🔴\";\n} else if (status === \"WARNING\") {\n    pill_color  = \"#f59e0b\";\n    pill_bg     = \"rgba(245,158,11,0.18)\";\n    pill_border = \"#d97706\";\n    pill_text   = \"WARNING ADVISORY\";\n    pill_icon   = \"🟡\";\n} else if (status === \"SENSOR_FAULT\") {\n    pill_color  = \"#94a3b8\";\n    pill_bg     = \"rgba(148,163,184,0.15)\";\n    pill_border = \"#64748b\";\n    pill_text   = \"SENSOR FAULT\";\n    pill_icon   = \"⚪\";\n}\n\n// ── Overview card ─────────────────────────────────────────────────────────\nconst ts = resp.timestamp ? new Date(resp.timestamp).toLocaleTimeString() : \"—\";\nconst overview_html = `\n<div style=\"background:#1e293b;border:1px solid #334155;border-radius:12px;padding:16px 20px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#f8fafc;box-shadow:0 4px 12px rgba(0,0,0,0.3);\">\n  <div style=\"display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;\">\n    <div style=\"display:flex;align-items:center;gap:10px;\">\n      <span style=\"font-size:22px;\">🏭</span>\n      <div>\n        <h2 style=\"margin:0;font-size:17px;font-weight:700;color:#38bdf8;\">Two-Stage Industrial Compressor</h2>\n        <span style=\"font-size:12px;color:#94a3b8;\">Asset: <b>${machine_id}</b> &bull; 15 kW &bull; 10 Bar</span>\n      </div>\n    </div>\n    <div style=\"background:${pill_bg};border:1px solid ${pill_border};border-radius:24px;padding:6px 18px;display:flex;align-items:center;gap:8px;\">\n      <span style=\"font-size:12px;\">${pill_icon}</span>\n      <span style=\"color:${pill_color};font-weight:700;font-size:13px;letter-spacing:0.5px;\">${pill_text}</span>\n    </div>\n  </div>\n  <div style=\"display:flex;gap:12px;margin-top:12px;padding-top:12px;border-top:1px solid #334155;flex-wrap:wrap;font-size:12px;\">\n    <span style=\"background:#0f172a;padding:4px 10px;border-radius:6px;color:#cbd5e1;border:1px solid #334155;\">\n      📡 Source: <b style=\"color:#f8fafc;\">${source}</b>\n    </span>\n    <span style=\"background:#0f172a;padding:4px 10px;border-radius:6px;color:#cbd5e1;border:1px solid #334155;\">\n      ⚡ Latency: <b style=\"color:#38bdf8;\">${total_latency} ms</b>\n    </span>\n    <span style=\"background:#0f172a;padding:4px 10px;border-radius:6px;color:#cbd5e1;border:1px solid #334155;\">\n      ☁️ Cloud: <b style=\"color:#10b981;\">Optional ThingsBoard sync</b>\n    </span>\n    <span style=\"background:#0f172a;padding:4px 10px;border-radius:6px;color:#94a3b8;border:1px solid #334155;margin-left:auto;\">\n      🕐 Updated: <b>${ts}</b>\n    </span>\n  </div>\n</div>\n`;\n\n// ── ML panel ──────────────────────────────────────────────────────────────\nlet ml_html = \"\";\nif (ml && ml.ml_available) {\n    const is_anom   = (ml.status === \"ANOMALY\");\n    const anom_pct  = ((ml.anomaly_probability || 0) * 100).toFixed(1);\n    const thresh_pct= ((ml.threshold ?? 0) * 100).toFixed(1);\n    ml_html = `\n    <div style=\"background:#1e293b;border:1px solid ${is_anom?'#ef4444':'#10b981'};border-radius:10px;padding:12px 16px;font-family:sans-serif;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;\">\n      <div>\n        <b style=\"color:#38bdf8;font-size:13px;\">🧠 Unified Anomaly Model (8-Feature SKAB)</b>\n        <div style=\"font-size:12px;color:#cbd5e1;margin-top:2px;\">\n          Anomaly Score: <b style=\"color:${is_anom?'#ef4444':'#10b981'};\">${anom_pct}%</b>\n          (Threshold: ${thresh_pct}%) &bull; Top Factor: <b>${ml.top_contributor || 'Unavailable'}</b>\n        </div>\n      </div>\n      <span style=\"background:${is_anom?'#ef4444':'#10b981'};color:#fff;font-weight:700;font-size:11px;padding:3px 10px;border-radius:12px;\">${ml.status}</span>\n    </div>`;\n} else {\n    ml_html = `\n    <div style=\"background:#1e293b;border:1px solid #334155;border-radius:10px;padding:10px 16px;font-family:sans-serif;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#94a3b8;\">\n      <span>🧠 <b>Edge AI:</b> 5-Sensor Rule Engine Active (Advisory Mode)</span>\n      <span style=\"background:#0f172a;padding:3px 8px;border-radius:4px;font-size:11px;color:#64748b;border:1px solid #334155;\">8-Feature Contract Enforced</span>\n    </div>`;\n}\n\n// ── Worker Recommendations ────────────────────────────────────────────────\nlet recs_html = \"\";\nif (!recs || recs.length === 0) {\n    recs_html = `\n    <div style=\"background:rgba(16,185,129,0.1);border:1px solid #059669;border-radius:10px;padding:14px 18px;font-family:sans-serif;display:flex;align-items:center;gap:12px;\">\n      <span style=\"font-size:22px;\">✅</span>\n      <div>\n        <b style=\"color:#34d399;font-size:14px;\">No worker alert for this reading</b>\n        <div style=\"font-size:12px;color:#94a3b8;margin-top:3px;\">Continuous edge monitoring active. No corrective action required.</div>\n      </div>\n    </div>`;\n} else {\n    recs_html = recs.slice(0, 2).map(r => {\n        const is_crit   = (r.severity === \"CRITICAL\" || r.severity === \"CRITICAL ADVISORY\");\n        const card_col  = is_crit ? \"#ef4444\" : \"#f59e0b\";\n        const causes    = (r.possible_causes || []).slice(0, 2);\n        const actions   = (r.recommended_worker_actions || []).slice(0, 3);\n        return `\n        <div style=\"background:#1e293b;border:1px solid ${card_col};border-left:5px solid ${card_col};border-radius:10px;padding:14px 18px;margin-bottom:10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;\">\n          <div style=\"display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #334155;padding-bottom:8px;\">\n            <div>\n              <b style=\"color:#f8fafc;font-size:14px;\">${r.alert_title || r.alert_type}</b>\n              <span style=\"font-size:12px;color:#38bdf8;margin-left:8px;\">${r.sensor}: <b>${r.measured_value} ${r.unit||''}</b></span>\n            </div>\n            <span style=\"background:${card_col};color:#fff;font-weight:700;font-size:11px;padding:2px 8px;border-radius:4px;\">${r.severity}</span>\n          </div>\n          <div style=\"display:grid;grid-template-columns:1fr 1.3fr;gap:14px;margin-top:10px;font-size:12px;color:#cbd5e1;\">\n            <div>\n              <b style=\"color:#fde68a;\">🔍 Probable Causes:</b>\n              <ul style=\"margin:4px 0 0 16px;padding:0;line-height:1.5;color:#94a3b8;\">\n                ${causes.map(c=>`<li>${c}</li>`).join('')}\n              </ul>\n            </div>\n            <div>\n              <b style=\"color:#38bdf8;\">🛠️ Immediate Actions:</b>\n              <ol style=\"margin:4px 0 0 18px;padding:0;line-height:1.5;color:#f1f5f9;\">\n                ${actions.map(a=>`<li>${a}</li>`).join('')}\n              </ol>\n            </div>\n          </div>\n          <div style=\"margin-top:8px;padding-top:6px;border-top:1px solid #334155;display:flex;justify-content:space-between;font-size:11px;color:#64748b;\">\n            <span>ID: <b>${r.alert_id}</b></span>\n            <span style=\"color:#f87171;\">⚠️ Advisory only — follow site OEM procedure</span>\n          </div>\n        </div>`;\n    }).join('');\n}\n\nreturn [\n    { payload: overview_html },\n    { payload: s_temp },\n    { payload: s_vib },\n    { payload: s_press },\n    { payload: s_curr },\n    { payload: s_spd },\n    { payload: ml_html },\n    { payload: recs_html },\n    { payload: total_latency }\n];",
+    "outputs": 9,
+    "x": 1030,
+    "y": 200,
+    "wires": [
+      [
+        "aa99db14cc5ca27d"
+      ],
+      [
+        "235f209cf0b1815b"
+      ],
+      [
+        "7acec1e4a40c01da"
+      ],
+      [
+        "9c127e36b6cc4c27"
+      ],
+      [
+        "55ae2ea63539fe12"
+      ],
+      [
+        "675a880661aca1ef"
+      ],
+      [
+        "1100d75c4619d31b"
+      ],
+      [
+        "de2c339cadc99282"
+      ],
+      [
+        "f80b1679d9ee09d9"
+      ]
+    ]
+  },
+  {
+    "id": "aa99db14cc5ca27d",
+    "type": "ui-text",
+    "z": "50d411bc49d22a09",
+    "group": "group_overview",
+    "order": 2,
+    "width": 12,
+    "height": 3,
+    "name": "Machine Overview Display",
+    "label": "",
+    "format": "{{msg.payload}}",
+    "layout": "col-center",
+    "className": "",
+    "x": 1350,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "235f209cf0b1815b",
+    "type": "ui-gauge",
+    "z": "50d411bc49d22a09",
+    "name": "Temperature Gauge",
+    "group": "group_sensors",
+    "order": 2,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Temperature",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "°C",
+    "segments": [
+      {
+        "from": "0",
+        "color": "#5cd65c",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "95",
+        "color": "#ffc800",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "105",
+        "color": "#ea5353",
+        "text": "",
+        "textType": "label"
+      }
+    ],
+    "min": 0,
+    "max": 130,
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1350,
+    "y": 140,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "7acec1e4a40c01da",
+    "type": "ui-gauge",
+    "z": "50d411bc49d22a09",
+    "name": "Vibration Gauge",
+    "group": "group_sensors",
+    "order": 3,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Vibration",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "g RMS",
+    "segments": [
+      {
+        "from": "0",
+        "color": "#5cd65c",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "0.3",
+        "color": "#ffc800",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "0.45",
+        "color": "#ea5353",
+        "text": "",
+        "textType": "label"
+      }
+    ],
+    "min": 0,
+    "max": 1,
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1350,
+    "y": 200,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "9c127e36b6cc4c27",
+    "type": "ui-gauge",
+    "z": "50d411bc49d22a09",
+    "name": "Pressure Gauge",
+    "group": "group_sensors",
+    "order": 4,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Pressure",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "bar",
+    "segments": [
+      {
+        "from": "2",
+        "color": "#5cd65c",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "9.5",
+        "color": "#ffc800",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "10.5",
+        "color": "#ea5353",
+        "text": "",
+        "textType": "label"
+      }
+    ],
+    "min": 2,
+    "max": 14,
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1350,
+    "y": 260,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "55ae2ea63539fe12",
+    "type": "ui-gauge",
+    "z": "50d411bc49d22a09",
+    "name": "Current Gauge",
+    "group": "group_sensors",
+    "order": 5,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Current",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "A",
+    "segments": [
+      {
+        "from": "5",
+        "color": "#5cd65c",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "22",
+        "color": "#ffc800",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "26",
+        "color": "#ea5353",
+        "text": "",
+        "textType": "label"
+      }
+    ],
+    "min": 5,
+    "max": 35,
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1350,
+    "y": 320,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "675a880661aca1ef",
+    "type": "ui-gauge",
+    "z": "50d411bc49d22a09",
+    "name": "Speed Gauge",
+    "group": "group_sensors",
+    "order": 6,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Speed",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "RPM",
+    "segments": [
+      {
+        "from": "1000",
+        "color": "#5cd65c",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "1480",
+        "color": "#ffc800",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "1520",
+        "color": "#ea5353",
+        "text": "",
+        "textType": "label"
+      }
+    ],
+    "min": 1000,
+    "max": 1800,
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1350,
+    "y": 380,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "1100d75c4619d31b",
+    "type": "ui-text",
+    "z": "50d411bc49d22a09",
+    "group": "group_ml",
+    "order": 2,
+    "width": 12,
+    "height": 3,
+    "name": "ML Inference Display",
+    "label": "",
+    "format": "{{msg.payload}}",
+    "layout": "col-center",
+    "x": 1350,
+    "y": 440,
+    "wires": []
+  },
+  {
+    "id": "de2c339cadc99282",
+    "type": "ui-text",
+    "z": "50d411bc49d22a09",
+    "group": "group_alerts",
+    "order": 2,
+    "width": 12,
+    "height": 6,
+    "name": "Worker Recommendations Panel",
+    "label": "",
+    "format": "{{msg.payload}}",
+    "layout": "col-center",
+    "x": 1350,
+    "y": 500,
+    "wires": []
+  },
+  {
+    "id": "f80b1679d9ee09d9",
+    "type": "ui-gauge",
+    "z": "50d411bc49d22a09",
+    "name": "Latency Gauge",
+    "group": "group_performance",
+    "order": 2,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 6,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Latency",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "ms",
+    "segments": [
+      {
+        "from": "0",
+        "color": "#5cd65c",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "50",
+        "color": "#ffc800",
+        "text": "",
+        "textType": "label"
+      },
+      {
+        "from": "100",
+        "color": "#ea5353",
+        "text": "",
+        "textType": "label"
+      }
+    ],
+    "min": 0,
+    "max": 150,
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1350,
+    "y": 560,
+    "wires": [
+      []
+    ]
+  }
+]

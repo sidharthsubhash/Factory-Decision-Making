@@ -1,0 +1,10 @@
+{
+  "broker": "Mosquitto",
+  "address": "127.0.0.1:61868",
+  "qos": 1,
+  "messages_received": 2,
+  "broker_down_publish_status": 503,
+  "local_analysis_during_outage": "NORMAL",
+  "reconnect_delivery": true,
+  "duplicate_rejected": true
+}

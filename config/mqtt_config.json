@@ -1,0 +1,19 @@
+{
+  "mode": "LOCAL_FIRST",
+  "local_broker": {
+    "host": "127.0.0.1",
+    "port": 1883,
+    "keepalive": 60,
+    "tls": false,
+    "auth": false,
+    "username": "",
+    "password": ""
+  },
+  "topics": {
+    "telemetry": "factory/compressor/sensors",
+    "commands": "factory/compressor/commands",
+    "status": "factory/compressor/status"
+  },
+  "qos": 1,
+  "client_id_prefix": "COMPRESSOR_EDGE"
+}

@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "author": "Factory Edge Engineering Team",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 120, "left": 280, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht", "top": -40, "left": 310, "attrs": { "temperature": "78.5", "humidity": "45" } },
+    { "type": "wokwi-potentiometer", "id": "pot_press", "top": 40, "left": 80, "attrs": { "label": "Discharge Pressure (bar)" } },
+    { "type": "wokwi-potentiometer", "id": "pot_curr", "top": 160, "left": 80, "attrs": { "label": "Motor Current (A)" } },
+    { "type": "wokwi-potentiometer", "id": "pot_vib", "top": 280, "left": 80, "attrs": { "label": "Crankcase Vibration (g RMS)" } },
+    { "type": "wokwi-potentiometer", "id": "pot_speed", "top": 400, "left": 80, "attrs": { "label": "Shaft Speed (RPM)" } },
+    { "type": "wokwi-led", "id": "led_green", "top": 20, "left": 540, "attrs": { "color": "green", "label": "Telemetry Active" } },
+    { "type": "wokwi-led", "id": "led_red", "top": 100, "left": 540, "attrs": { "color": "red", "label": "Fault Injected" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 60, "left": 480, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 140, "left": 480, "attrs": { "value": "220" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+
+    [ "dht:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "dht:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "dht:SDA", "esp:15", "green", [ "v0" ] ],
+
+    [ "pot_press:VCC", "esp:3V3", "red", [ "h0" ] ],
+    [ "pot_press:GND", "esp:GND.1", "black", [ "h0" ] ],
+    [ "pot_press:SIG", "esp:34", "blue", [ "h20", "v10" ] ],
+
+    [ "pot_curr:VCC", "esp:3V3", "red", [ "h0" ] ],
+    [ "pot_curr:GND", "esp:GND.1", "black", [ "h0" ] ],
+    [ "pot_curr:SIG", "esp:35", "orange", [ "h20", "v10" ] ],
+
+    [ "pot_vib:VCC", "esp:3V3", "red", [ "h0" ] ],
+    [ "pot_vib:GND", "esp:GND.1", "black", [ "h0" ] ],
+    [ "pot_vib:SIG", "esp:33", "yellow", [ "h20", "v10" ] ],
+
+    [ "pot_speed:VCC", "esp:3V3", "red", [ "h0" ] ],
+    [ "pot_speed:GND", "esp:GND.1", "black", [ "h0" ] ],
+    [ "pot_speed:SIG", "esp:32", "purple", [ "h20", "v10" ] ],
+
+    [ "esp:2", "r1:1", "green", [ "h10" ] ],
+    [ "r1:2", "led_green:A", "green", [ "h10" ] ],
+    [ "led_green:C", "esp:GND.2", "black", [ "v20" ] ],
+
+    [ "esp:4", "r2:1", "red", [ "h10" ] ],
+    [ "r2:2", "led_red:A", "red", [ "h10" ] ],
+    [ "led_red:C", "esp:GND.2", "black", [ "v20" ] ]
+  ],
+  "dependencies": {
+    "PubSubClient": "2.8",
+    "DHT sensor library": "1.4.6",
+    "Adafruit Unified Sensor": "1.1.14",
+    "ArduinoJson": "6.21.3"
+  }
+}

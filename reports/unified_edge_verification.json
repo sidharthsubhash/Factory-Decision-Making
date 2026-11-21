@@ -1,0 +1,19 @@
+{
+  "model_version": "3.1.0-unified",
+  "file_uploads_matching_report": 17,
+  "requests": 120,
+  "local_status_checks_passed": 120,
+  "scope": "Loopback HTTP with non-loopback socket connections blocked in the test process",
+  "end_to_end_local_http_ms": {
+    "p50": 32.77655004058033,
+    "p95": 43.98845996474847,
+    "p99": 52.41413003997877,
+    "max": 90.19449993502349
+  },
+  "api_analysis_before_writes_ms": {
+    "p50": 0.73,
+    "p95": 0.9614999999999999,
+    "p99": 1.4688000000000012,
+    "max": 1.68
+  }
+}

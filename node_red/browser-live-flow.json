@@ -1,0 +1,406 @@
+[
+  {
+    "id": "fedge_live_flow",
+    "type": "tab",
+    "label": "Factory Edge – Live Simulator",
+    "disabled": false,
+    "info": "Read-only local display. Start streaming in the FastAPI simulator."
+  },
+  {
+    "id": "fedge_live_base",
+    "type": "ui-base",
+    "name": "Factory Edge Live",
+    "path": "/edge-live",
+    "appIcon": "",
+    "includeClientData": true,
+    "acceptsClientConfig": [
+      "ui-notification",
+      "ui-control"
+    ],
+    "showPathInSidebar": false,
+    "headerContent": "page",
+    "navigationStyle": "default",
+    "titleBarStyle": "default",
+    "showReconnectNotification": true,
+    "notificationDisplayTime": 1,
+    "showDisconnectNotification": true,
+    "allowInstall": false
+  },
+  {
+    "id": "fedge_live_theme",
+    "type": "ui-theme",
+    "name": "Industrial Dark Theme",
+    "colors": {
+      "surface": "#1e293b",
+      "primary": "#38bdf8",
+      "bgPage": "#0f172a",
+      "groupBg": "#1e293b",
+      "groupOutline": "#334155"
+    }
+  },
+  {
+    "id": "fedge_live_page",
+    "type": "ui-page",
+    "name": "Live Compressor",
+    "ui": "fedge_live_base",
+    "path": "/compressor",
+    "icon": "dashboard",
+    "layout": "grid",
+    "theme": "fedge_live_theme",
+    "order": 1,
+    "className": ""
+  },
+  {
+    "id": "fedge_live_overview",
+    "type": "ui-group",
+    "name": "Latest simulator decision",
+    "page": "fedge_live_page",
+    "width": "12",
+    "height": "1",
+    "order": 1,
+    "showTitle": true,
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default"
+  },
+  {
+    "id": "fedge_live_sensors",
+    "type": "ui-group",
+    "name": "Five sensor readings",
+    "page": "fedge_live_page",
+    "width": "12",
+    "height": "1",
+    "order": 2,
+    "showTitle": true,
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default"
+  },
+  {
+    "id": "fedge_live_alerts",
+    "type": "ui-group",
+    "name": "Operator advisories",
+    "page": "fedge_live_page",
+    "width": "12",
+    "height": "1",
+    "order": 3,
+    "showTitle": true,
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default"
+  },
+  {
+    "id": "fedge_live_tick",
+    "type": "inject",
+    "z": "fedge_live_flow",
+    "name": "Refresh every second",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "1",
+    "once": true,
+    "onceDelay": 0.3,
+    "payload": "",
+    "payloadType": "date",
+    "x": 150,
+    "y": 100,
+    "wires": [
+      [
+        "fedge_live_events"
+      ]
+    ]
+  },
+  {
+    "id": "fedge_live_events",
+    "type": "http request",
+    "z": "fedge_live_flow",
+    "name": "Read exact simulator decision",
+    "method": "GET",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://127.0.0.1:8000/simulator/latest",
+    "persist": false,
+    "senderr": true,
+    "headers": [],
+    "x": 380,
+    "y": 100,
+    "wires": [
+      [
+        "fedge_live_format"
+      ]
+    ]
+  },
+  {
+    "id": "fedge_live_catch",
+    "type": "catch",
+    "z": "fedge_live_flow",
+    "name": "API connection errors",
+    "scope": [
+      "fedge_live_events"
+    ],
+    "uncaught": false,
+    "x": 650,
+    "y": 210,
+    "wires": [
+      [
+        "fedge_live_format"
+      ]
+    ]
+  },
+  {
+    "id": "fedge_live_format",
+    "type": "function",
+    "z": "fedge_live_flow",
+    "name": "Show latest decision and readings",
+    "func": "const data = msg.payload;\nconst unavailable = message => [\n    {payload:{status:message,live:false}}, null, null, null, null, null, {payload:{items:[]}}\n];\nif (msg.error || msg.statusCode !== 200) return unavailable(\"Local API unavailable\");\nif (!data?.readings) return unavailable(\"Waiting for the simulator\");\nconst updated = new Date(data.timestamp);\nconst live = Date.now() - updated.getTime() < 5000;\nconst status = data.overall_status;\nconst anomaly = {\n    NORMAL:\"No rule anomaly\", WARNING:\"Abnormal reading\", CRITICAL:\"Critical anomaly\", SENSOR_FAULT:\"Invalid telemetry\"\n}[status] || \"Unknown\";\nconst overview = {status,live,anomaly,time:updated.toLocaleTimeString(),latency:data.timing?.edge_processing_latency_ms};\nconst precision = {temperature: 1, vibration: 3, pressure: 2, current: 2, speed: 0};\nconst read = key => {\n    const value = data.readings[key]?.value;\n    return Number.isFinite(value) ? {payload: Number(value.toFixed(precision[key]))} : null;\n};\nconst items = (data.worker_recommendations || []).map(row => ({\n    category:row.alert_type || row.alert_title || 'advisory',\n    title:row.alert_title || (row.alert_type || \"Advisory\").replace(/_/g,\" \"),\n    severity:row.severity,\n    actions:row.recommended_worker_actions || [],\n    followup:row.maintenance_followup\n}));\nreturn [\n    {payload:overview}, ...[\"temperature\",\"vibration\",\"pressure\",\"current\",\"speed\"].map(read),\n    {payload:{items,live,status}}\n];",
+    "outputs": 7,
+    "x": 1100,
+    "y": 180,
+    "wires": [
+      [
+        "fedge_live_status"
+      ],
+      [
+        "fedge_live_temperature"
+      ],
+      [
+        "fedge_live_vibration"
+      ],
+      [
+        "fedge_live_pressure"
+      ],
+      [
+        "fedge_live_current"
+      ],
+      [
+        "fedge_live_speed"
+      ],
+      [
+        "fedge_live_advice"
+      ]
+    ]
+  },
+  {
+    "id": "fedge_live_status",
+    "type": "ui-template",
+    "z": "fedge_live_flow",
+    "group": "fedge_live_overview",
+    "name": "status",
+    "order": 1,
+    "width": 12,
+    "height": 2,
+    "format": "<template>\n  <div v-if=\"msg?.payload\" class=\"edge-overview\">\n    <strong :class=\"'severity-' + msg.payload.status\">{{ msg.payload.status }}</strong>\n    <span v-if=\"msg.payload.anomaly\">{{ msg.payload.anomaly }}</span>\n    <span v-if=\"msg.payload.latency != null\">{{ msg.payload.latency }} ms API analysis</span>\n    <span v-if=\"msg.payload.time\">{{ msg.payload.live ? 'Live' : 'Last recorded' }} · {{ msg.payload.time }}</span>\n  </div>\n</template>\n<style>\n.edge-overview{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding:.5rem}\n.edge-overview strong{font-size:1.45rem}\n.severity-NORMAL{color:#80e0a0}.severity-WARNING{color:#ffd06c}.severity-CRITICAL,.severity-SENSOR_FAULT{color:#ff939b}\n</style>",
+    "x": 1430,
+    "y": 80,
+    "wires": [],
+    "templateScope": "local",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true
+  },
+  {
+    "id": "fedge_live_advice",
+    "type": "ui-template",
+    "z": "fedge_live_flow",
+    "group": "fedge_live_alerts",
+    "name": "advice",
+    "order": 1,
+    "width": 12,
+    "height": 0,
+    "format": "<template>\n  <section v-if=\"msg?.payload\" class=\"edge-advice\">\n    <p v-if=\"!msg.payload.live\" class=\"edge-advice-feed\">\n      {{ msg.payload.items?.length ? 'Last recorded advisories · Resume streaming for updates' : (msg.payload.status || 'Waiting for the local decision engine') }}\n    </p>\n    <p v-else-if=\"!msg.payload.items?.length\" class=\"edge-advice-feed\">No operator advisories for this reading.</p>\n    <article v-for=\"(item, index) in msg.payload.items\" :key=\"item.category + ':' + index\"\n             :data-severity=\"item.severity\" class=\"edge-advice-card\">\n      <header class=\"edge-advice-heading\">\n        <h3>{{ item.title }}</h3>\n        <span class=\"edge-advice-badge\">{{ item.severity }}</span>\n      </header>\n      <p v-if=\"item.actions.length\" class=\"edge-advice-first\">\n        <strong>First action</strong>\n        <span>{{ item.actions[0] }}</span>\n      </p>\n      <details v-if=\"item.actions.length > 1 || item.followup\" class=\"edge-advice-details\">\n        <summary>{{ item.actions.length > 1 ? 'More actions and follow-up' : 'Maintenance follow-up' }}</summary>\n        <ol v-if=\"item.actions.length > 1\" start=\"2\">\n          <li v-for=\"(action, actionIndex) in item.actions.slice(1)\" :key=\"actionIndex\">{{ action }}</li>\n        </ol>\n        <p v-if=\"item.followup\" class=\"edge-advice-followup\">\n          <strong>Maintenance follow-up</strong>\n          <span>{{ item.followup }}</span>\n        </p>\n      </details>\n    </article>\n  </section>\n</template>\n<style>\n.edge-advice{display:grid;gap:.75rem;padding:.75rem}\n.edge-advice-feed{color:#b7c5d8;font-size:.875rem;margin:0}\n.edge-advice-card{--advice-accent:#ffd06c;min-width:0;background:#162234;border:1px solid #35455e;border-inline-start:4px solid var(--advice-accent);border-radius:10px;padding:.85rem 1rem}\n.edge-advice-card[data-severity^=CRITICAL],.edge-advice-card[data-severity=SENSOR_FAULT]{--advice-accent:#ff9da7}\n.edge-advice-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem 1rem;flex-wrap:wrap;margin-bottom:.6rem}\n.edge-advice-heading h3{font-size:1rem;line-height:1.35;margin:0}\n.edge-advice-badge{font-size:.72rem;font-weight:700;line-height:1.3;border-radius:999px;border:1px solid currentColor;padding:.18rem .55rem;color:var(--advice-accent)}\n.edge-advice-first,.edge-advice-followup{display:grid;gap:.2rem;margin:0;line-height:1.45}\n.edge-advice-first strong,.edge-advice-followup strong{color:#b7c5d8;font-size:.78rem}\n.edge-advice-details{margin-top:.65rem;padding-top:.55rem;border-top:1px solid #35455e}\n.edge-advice-details summary{cursor:pointer;color:#83d9ff;font-size:.875rem;font-weight:600}\n.edge-advice-details ol{margin:.55rem 0;padding-inline-start:1.5rem}\n.edge-advice-details li+li{margin-top:.35rem}\n.edge-advice-followup{margin-top:.65rem}\n</style>",
+    "x": 1430,
+    "y": 440,
+    "wires": [],
+    "templateScope": "local",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true
+  },
+  {
+    "id": "fedge_live_temperature",
+    "type": "ui-gauge",
+    "z": "fedge_live_flow",
+    "name": "Temperature",
+    "group": "fedge_live_sensors",
+    "order": 1,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Temperature",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "°C",
+    "segments": [
+      {
+        "color": "#38bdf8",
+        "from": "0"
+      }
+    ],
+    "min": 0,
+    "max": 180,
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1430,
+    "y": 140,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "fedge_live_vibration",
+    "type": "ui-gauge",
+    "z": "fedge_live_flow",
+    "name": "Vibration",
+    "group": "fedge_live_sensors",
+    "order": 2,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Vibration",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "g RMS",
+    "segments": [
+      {
+        "color": "#38bdf8",
+        "from": "0"
+      }
+    ],
+    "min": 0,
+    "max": 1,
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1430,
+    "y": 195,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "fedge_live_pressure",
+    "type": "ui-gauge",
+    "z": "fedge_live_flow",
+    "name": "Pressure",
+    "group": "fedge_live_sensors",
+    "order": 3,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Pressure",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "bar",
+    "segments": [
+      {
+        "color": "#38bdf8",
+        "from": "0"
+      }
+    ],
+    "min": 0,
+    "max": 16,
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1430,
+    "y": 250,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "fedge_live_current",
+    "type": "ui-gauge",
+    "z": "fedge_live_flow",
+    "name": "Current",
+    "group": "fedge_live_sensors",
+    "order": 4,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Current",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "A",
+    "segments": [
+      {
+        "color": "#38bdf8",
+        "from": "0"
+      }
+    ],
+    "min": 0,
+    "max": 40,
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1430,
+    "y": 305,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "fedge_live_speed",
+    "type": "ui-gauge",
+    "z": "fedge_live_flow",
+    "name": "Speed",
+    "group": "fedge_live_sensors",
+    "order": 5,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 4,
+    "height": 3,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Speed",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "RPM",
+    "segments": [
+      {
+        "color": "#38bdf8",
+        "from": "0"
+      }
+    ],
+    "min": 0,
+    "max": 1800,
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 1430,
+    "y": 360,
+    "wires": [
+      []
+    ]
+  }
+]
