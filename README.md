@@ -10,6 +10,15 @@ You need Python 3.12 with the Windows Python Launcher (`py`), a web browser, and
 2. Open the [sensor simulator](http://127.0.0.1:8000/simulator). It starts streaming automatically. Wait until it says **Streaming five readings to the local API**.
 3. Click **Open live dashboard** from the simulator so the dashboard follows that simulator tab. Put the two windows side by side. The core demo runs locally after installation and can be shown with Wi-Fi disconnected.
 
+
+### Optional Node-RED dashboard
+
+1. Install Node.js LTS, which includes npm.
+2. With **Start_Demo.cmd** still running, double-click **Start_Node_RED.cmd**. On first launch it downloads the Node-RED dependencies. Keep both server windows open.
+3. Keep the sensor simulator streaming and open the [Node-RED dashboard](http://127.0.0.1:1880/edge-live/compressor). Try the same presets below to see the local decisions on the Node-RED display.
+
+The browser dashboard in step 3 above works with **Start_Demo.cmd** alone.
+
 ## Walk through the live decisions
 
 Leave streaming on and allow a moment for the dashboard to update after each preset. Keep the noise option off when comparing the two zero-speed cases.
